@@ -68,11 +68,7 @@ module.exports = {
                 secure: false,
                 changeOrigin: true
             }
-        },
-        // color: true, //终端中输出为彩色
-        historyApiFallback: true, //不跳转
-        inline: false, //实时刷新
-        hot: true //使用热加载插件
+        }
     },
     plugins: [
         //html模板插件
@@ -89,5 +85,13 @@ module.exports = {
         new webpack.DefinePlugin({
             __DEV__: JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false'))
         }),
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                colors: true, //终端中输出为彩色
+                historyApiFallback: true, //不跳转
+                inline: false, //实时刷新
+                hot: true //使用热加载插件
+            }
+        })
     ]
 }

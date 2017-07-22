@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { getAdData } from '../../../fetch/Home/home.js'
+import HomeAd from '../../../components/HomeAd/index'
 class Ad extends React.Component {
     constructor(props, context) {
         super(props, context)
@@ -12,14 +13,17 @@ class Ad extends React.Component {
     render() {
         return (
             <div>
-               
+               {
+                   this.state.data.length?<HomeAd data={this.state.data} />
+                   :<div>加载中。。。</div>
+               }
             </div>
         )
     }
     componentDidMount() {
         const result = getAdData()
         result.then((res) => {
-            return res.json
+            return res.json()
         }).then((json) => {
             const data = json
             if (data.length) {
