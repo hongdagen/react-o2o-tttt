@@ -9,10 +9,10 @@ class RouterMap extends React.Component {
     render() {
         return (
          <HashRouter>
-             <App>
-                <Route exact path='/' component={Home} />
+             <div>
+                <Route exact path='/' component={App} />
                 <Route path='/city' component={City} />
-            </App>
+            </div>
              </HashRouter> 
         )
     }
