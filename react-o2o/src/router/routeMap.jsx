@@ -1,9 +1,10 @@
 import React from 'react'
-import { HashRouter, Route,Link} from 'react-router-dom'
+import { HashRouter, Route,Link,Match} from 'react-router-dom'
 
 import App from '../containers/index'
 import Home from '../containers/Home'
 import City from '../containers/City'
+import Search from '../containers/Search'
 
 class RouterMap extends React.Component {
     render() {
@@ -12,6 +13,7 @@ class RouterMap extends React.Component {
              <div>
                 <Route exact path='/' component={App} />
                 <Route path='/city' component={City} />
+                <Route path='/search/:category' component={Search} />
             </div>
              </HashRouter> 
         )

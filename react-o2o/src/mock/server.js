@@ -5,6 +5,7 @@ import babel_po from 'babel-polyfill';
 import ad from './home/ad'
 import cors from 'koa2-cors';
 import homeListData from './home/list'
+import searchListData from './search/list'
 var app = new Koa();
 app.use(cors());
 let home = new Router()
@@ -15,6 +16,9 @@ home.get('/homead', async(ctx) => {
 home.get('/homelist/:city/:page',async(ctx)=>{
     ctx.body=homeListData
 })
+home.get('/searchlistdata/:city/:page'),async(ctx)=>{
+    ctx.body=searchListData
+}
 
 var router = new Router();
 router.use('/api', home.routes(), home.allowedMethods())

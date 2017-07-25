@@ -2,20 +2,25 @@ import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import '../../static/css/common.less'
 import '../../static/css/font.css'
+import { withRouter } from 'react-router-dom'
 import './style.less'
 import { Link } from 'react-router-dom'
+import SearchInput from '../SearchInput/index'
 class HomeHeader extends React.Component {
     constructor(props, context) {
         super(props, context)
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
+        this.state = {
+            kwd: ''
+        }
     }
     render() {
         return (
             <div id="home-header" className="clear-fix">
                 <div className="home-header-left float-left">
                     <Link to="/city">
-                    <span>{this.props.cityName}</span>
-                    <i className="icon-angle-down"></i>
+                        <span>{this.props.cityName}</span>
+                        <i className="icon-angle-down"></i>
                     </Link>
                 </div>
                 <div className="home-header-right float-right">
@@ -24,11 +29,15 @@ class HomeHeader extends React.Component {
                 <div className="home-header-middle">
                     <div className="search-container">
                         <i className="icon-search"></i>
-                        <input type="text" placeholder="请输入关键字" />
+                       <SearchInput value="" enterHandle={this.enterHandle.bind(this)} />
                     </div>
                 </div>
             </div>
         )
     }
+    enterHandle(value){
+    this.props.history.push('/search/all/'+encodeURIComponent(value))
+    }
+  
 }
-export default HomeHeader
+export default withRouter(HomeHeader)
